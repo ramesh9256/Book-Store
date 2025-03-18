@@ -1,0 +1,36 @@
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+.form input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+}
+button {
+  background: blue;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.book-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 150px;
+}
+.book-image {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+}
