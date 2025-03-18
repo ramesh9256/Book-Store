@@ -1,19 +1,24 @@
-const mongoose = require ('mongoose');
+const mongoose = require("mongoose");
+require("dotenv").config();
 
-mongoose.connect('mongodb://localhost:27017/Books');
-
-
-// create a book schema 
-
-const bookSchema = new mongoose.Schema({
-    title: String,
-    author: String,
-    price: Number,
-    cover: String,
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-// create a model
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "❌ MongoDB Connection Error!"));
+db.once("open", () => console.log("✅ Connected to MongoDB!"));
 
-const Model = mongoose.model('book' , bookSchema);
+// Book Schema
+const bookSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  author: { type: String, required: true },
+  price: { type: Number, required: true },
+  cover: { type: String },
+});
 
-module.exports = Model;
+// Create Model
+const BookModel = mongoose.model("Book", bookSchema);
+module.exports = BookModel;
